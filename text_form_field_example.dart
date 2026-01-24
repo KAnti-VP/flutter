@@ -94,6 +94,9 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Name and number submitted!')),
+                      );
                        _submitName();
                     }
                   },
@@ -107,3 +110,4 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
     );
   }
 }
+
