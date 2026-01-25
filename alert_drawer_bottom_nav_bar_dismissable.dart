@@ -9,7 +9,8 @@ class AlertDrawerBottomNavBarDismissable extends StatefulWidget {
   }
 }
 
-class _AlertDrawerBottomNavBarDismissableState extends State<AlertDrawerBottomNavBarDismissable> {
+class _AlertDrawerBottomNavBarDismissableState
+    extends State<AlertDrawerBottomNavBarDismissable> {
   final _formKey = GlobalKey<FormState>();
   List<String> todos = ['Joging', 'Gym', 'School'];
   final _todoController = TextEditingController();
@@ -57,29 +58,45 @@ class _AlertDrawerBottomNavBarDismissableState extends State<AlertDrawerBottomNa
       endDrawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
+          children: [
             DrawerHeader(
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 217, 207, 58),
               ),
-              child: Text('Menu'),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Menu'),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: Icon(Icons.close),
+                  ),
+                ],
+              ),
             ),
             ListTile(
               leading: Icon(Icons.edit),
               title: Text('New todo'),
               onTap: () {
+                _selectedIndex = 0;
                 setState(() {
                   _currentPage = 'add-todo-item';
                 });
+                Navigator.of(context).pop();
               },
             ),
             ListTile(
               leading: Icon(Icons.format_list_bulleted),
               title: Text('Todo list'),
               onTap: () {
+                _selectedIndex = 1;
                 setState(() {
                   _currentPage = 'todo-list';
                 });
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -87,7 +104,8 @@ class _AlertDrawerBottomNavBarDismissableState extends State<AlertDrawerBottomNa
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.amberAccent, // BottomNavigationBar background color
+        backgroundColor:
+            Colors.amberAccent, // BottomNavigationBar background color
         selectedItemColor: Colors.white, // Selected item color
         unselectedItemColor: Colors.teal, // Unselected item color
         items: const [
