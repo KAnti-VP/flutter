@@ -73,7 +73,8 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
                       if (value == null || value.trim().isEmpty) {
                         return 'Please enter a number';
                       }
-                      if (int.tryParse(value.trim())!.isOdd) {
+                        final parsed = int.tryParse(value.trim());
+                        if (parsed == null) {
                         return 'Please enter an even number';
                       }
                       return null;
@@ -110,4 +111,5 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
     );
   }
 }
+
 
